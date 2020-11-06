@@ -1,0 +1,8 @@
+type: object
+properties:
+  message:
+    type: string
+    example: error message
+  code:
+    type: string
+    example: ERROR_01

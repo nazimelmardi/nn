@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  author="Nazim El Mardi"
+                id="create_outpay_header"
+                logicalFilePath="db/changelog/1.0.0/outpay_header-changeset.xml">
+
+        <createTable  tableName="outpay_header"
+                      remarks="Table for outpay customer data">
+
+            <column  name="outpay_header_id"
+                     type="int"
+                     remarks="unique id of the outpay header">
+                <constraints  nullable="false"
+                              primaryKey="true"
+                              primaryKeyName="pk_outpay_header_id"/>
+            </column>
+            <column  name="clntnum"
+                     type="char(8)"
+                     remarks="client number">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="chdrnum"
+                     type="char(8)"
+                     remarks="contract header number (?)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="letter_type"
+                     type="char(12)"
+                     remarks="Letter Type">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="print_date"
+                     type="date"
+                     remarks="Letter print date">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="data_id"
+                     type="char(6)"
+                     remarks="ID of the dataset (?) ">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="clnt_name"
+                     type="clob(80)"
+                     remarks="name of the client">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="clnt_address"
+                     type="clob(80)"
+                     remarks="postal address of the client">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="reg_date"
+                     type="date"
+                     remarks="Registration date">
+                 <constraints  nullable="true"/>
+            </column>
+            <column  name="ben_percent"
+                     type="decimal(6,2)"
+                     remarks="">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="role1"
+                     type="char(2)"
+                     remarks="Role 1 ">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="role2"
+                     type="char(2)"
+                     remarks="Role 2 ">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="cown_num"
+                     type="char(8)"
+                     remarks="owner number">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="cown_name"
+                     type="clob(80)"
+                     remarks="owner name">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice01"
+                     type="clob(80)"
+                     remarks="Notice 01">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice02"
+                     type="clob(80)"
+                     remarks="Notice 02">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice03"
+                     type="clob(80)"
+                     remarks="Notice 03">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice04"
+                     type="clob(80)"
+                     remarks="Notice 04">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice05"
+                     type="clob(80)"
+                     remarks="Notice 05">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="notice06"
+                     type="clob(80)"
+                     remarks="Notice 06">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="claim_id"
+                     type="char(9)"
+                     remarks="Claim ID">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="tp2_process_date"
+                     type="timestamp"
+                     remarks="TP2 Process date">
+                <constraints  nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Nazim El Mardi" id="addAutoIncrement_outpay">
+        <addAutoIncrement catalogName="cat"
+                          columnDataType="int"
+                          columnName="outpay_header_id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="100"
+                          tableName="outpay_header"/>
+    </changeSet>
+
+</databaseChangeLog>

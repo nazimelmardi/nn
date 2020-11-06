@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  author="Nazim El Mardi"
+                id="create_sur_values"
+                logicalFilePath="db/changelog/1.0.0/sur_values-changeset.xml">
+        <createTable  tableName="sur_values"
+                      remarks="Table for sur values data">
+
+            <column  name="id"
+                     type="int"
+                     remarks="unique id of the sur value data">
+                <constraints  nullable="false"
+                              primaryKey="true"
+                              primaryKeyName="pk_sur_values_id"/>
+            </column>
+            <column  name="chdrnum"
+                     type="char(8)"
+                     remarks="contract header number (?)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="survalue"
+                     type="decimal(15,2)"
+                     remarks="Value">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="company"
+                     type="char(1)"
+                     remarks="Company marker">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="currency"
+                     type="char(3)"
+                     remarks="Currency code">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="valid_date"
+                     type="char(10)"
+                     remarks="Date of validity">
+                <constraints  nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Nazim El Mardi" id="addAutoIncrement_survalues">
+        <addAutoIncrement catalogName="cat"
+                          columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="100"
+                          tableName="sur_values"/>
+    </changeSet>
+
+</databaseChangeLog>

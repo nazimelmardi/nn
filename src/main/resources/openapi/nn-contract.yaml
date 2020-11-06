@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: NN homework application fileupload contract
+  description: file upload API
+  version: 1.0.0
+  contact:
+    email: szabo.z.attila@gmail.com
+servers:
+  - url: /v2
+tags:
+  - name: upload
+    description: Operations about policy file upload
+  - name: outpay-header
+    description: Operations about outpay header file upload
+  - name: sur-values
+    description: Operations about sur values file upload
+security:
+  - basicAuth: []
+paths:
+  '/nn/upload':
+    post:
+      tags:
+        - upload
+      operationId: uploadFile
+      summary: "Upload file"
+      requestBody:
+        description: File upload with multipart type
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                uploadFile:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Fileuploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/componsents/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  responses:
+    BadRequest:
+      $ref: "./errors/bad-request.yaml"
+    Forbidden:
+      $ref: "./errors/forbidden.yaml"
+    InternalServerError:
+      $ref: "./errors/internal-server-error.yaml"
+  schemas:
+    OkResponse:
+      $ref: "./schemas/ok-response.yaml"

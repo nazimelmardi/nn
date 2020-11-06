@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  author="Nazim El Mardi"
+                id="create_policy"
+                logicalFilePath="db/changelog/1.0.0/custcomp-changeset.xml">
+
+        <createTable  tableName="policy"
+        remarks="Table for cutscomp policy data">
+
+            <column  name="id"
+                     type="int"
+                     remarks="unique id of the policy data">
+                <constraints  nullable="false"
+                              primaryKey="true"
+                              primaryKeyName="pk_policy_id"/>
+            </column>
+            <column  name="chdrnum"
+                     type="char(8)"
+                     remarks="contract header number (?)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="cownnum"
+                     type="char(8)"
+                     remarks="contract owner number (?)">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="owner_name"
+                     type="clob(50)"
+                     remarks="name of the contract owner">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="lifc_num"
+                     type="char(8)"
+                     remarks="(?)">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="lifc_name"
+                     type="clob(50)"
+                     remarks="name">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="aracde"
+                     type="char(3)"
+                     remarks="(?)">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="agntnum"
+                     type="char(5)"
+                     remarks="(?)">
+                <constraints  nullable="true"/>
+            </column>
+            <column  name="mail_address"
+                     type="clob(50)"
+                     remarks="mailing postal address">
+                <constraints  nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Nazim El Mardi" id="addAutoIncrement">
+        <addAutoIncrement catalogName="cat"
+                          columnDataType="int"
+                          columnName="id"
+                          defaultOnNull="false"
+                          generationType="ALWAYS"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="100"
+                          tableName="policy"/>
+    </changeSet>
+
+</databaseChangeLog>
