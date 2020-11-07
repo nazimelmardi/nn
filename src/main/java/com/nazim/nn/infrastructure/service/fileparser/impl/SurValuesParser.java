@@ -1,5 +1,6 @@
 package com.nazim.nn.infrastructure.service.fileparser.impl;
 
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.adapter.model.SurValuesModel;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +16,8 @@ import java.util.List;
 public class SurValuesParser implements FileParserService {
 
     @Override
-    public String getType() {
-        return "SURVALUES";
+    public Type getType() {
+        return Type.SURVALUES;
     }
 
     @Override

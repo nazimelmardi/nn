@@ -36,7 +36,7 @@ public class InputFileProcessService <T> {
 
         List<T> listOfModels = fileParserService.parse(asString(fileResource));
 
-        fileDataService.save(listOfModels);
+        fileDataService.save(listOfModels, fileParserService.getType());
 
         int size = listOfModels.size();
 

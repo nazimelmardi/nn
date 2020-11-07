@@ -1,5 +1,6 @@
 package com.nazim.nn.infrastructure.service.fileparser.impl;
 
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.adapter.model.PolicyModel;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +14,8 @@ import java.util.List;
 public class PolicyParser implements FileParserService {
 
     @Override
-    public String getType() {
-        return "POLICY";
+    public Type getType() {
+        return Type.POLICY;
     }
 
     @Override

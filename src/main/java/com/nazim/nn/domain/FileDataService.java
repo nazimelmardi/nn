@@ -6,6 +6,7 @@ import com.nazim.nn.domain.entity.SurValues;
 import com.nazim.nn.domain.persistence.OutpayHeaderRepository;
 import com.nazim.nn.domain.persistence.PolicyRepository;
 import com.nazim.nn.domain.persistence.SurValuesRepository;
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.adapter.mapper.FileParserMapper;
 import com.nazim.nn.infrastructure.adapter.model.OutpayHeaderModel;
 import com.nazim.nn.infrastructure.adapter.model.PolicyModel;
@@ -26,16 +27,20 @@ public class FileDataService <T> {
     private final FileParserMapper mapper;
 
     @Transactional
-    public void save(List<T> models) {
-        if (models.contains(PolicyModel.class)) {
-            List<PolicyModel> policyModels = (List<PolicyModel>) models;
-            savePolicy(policyModels);
-        } else if (models.contains(SurValuesModel.class)) {
-            List<SurValuesModel> surValuesModels = (List<SurValuesModel>) models;
-            saveSurValues(surValuesModels);
-        } else if (models.contains(OutpayHeaderModel.class)) {
-            List<OutpayHeaderModel> outpayHeaderModels = (List<OutpayHeaderModel>) models;
-            saveOutpayHeader(outpayHeaderModels);
+    public void save(List<T> models, Type type) {
+        switch (type) {
+            case POLICY:
+                List<PolicyModel> policyModels = (List<PolicyModel>) models;
+                savePolicy(policyModels);
+                break;
+            case OUTHEADER:
+                List<OutpayHeaderModel> outpayHeaderModels = (List<OutpayHeaderModel>) models;
+                saveOutpayHeader(outpayHeaderModels);
+                break;
+            case SURVALUES:
+                List<SurValuesModel> surValuesModels = (List<SurValuesModel>) models;
+                saveSurValues(surValuesModels);
+                break;
         }
     }
 

@@ -1,6 +1,7 @@
 package com.nazim.nn.infrastructure.service.fileparser.impl;
 
 import com.nazim.nn.domain.FileDataService;
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.adapter.model.OutpayHeaderModel;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import java.util.List;
 public class OutpayHeaderParser implements FileParserService {
 
     @Override
-    public String getType() {
-        return "OUTHEADER";
+    public Type getType() {
+        return Type.OUTHEADER;
     }
 
     @Override
