@@ -1,5 +1,6 @@
 package com.nazim.nn.infrastructure.service;
 
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import com.nazim.nn.infrastructure.service.fileparser.impl.OutpayHeaderParser;
 import com.nazim.nn.infrastructure.service.fileparser.impl.PolicyParser;
@@ -32,9 +33,10 @@ class ContentParserFactoryTest {
     @DisplayName("Should return with proper class type")
     void shouldReturnWithProperClassType() {
         // Given
-        String fileTypePolicy = "POLICY";
-        String fileTypeOutHeader = "OUTHEADER";
-        String fileTypeSurValues = "SURVALUES";
+
+        Type fileTypePolicy = Type.POLICY;
+        Type fileTypeOutHeader = Type.OUTHEADER;
+        Type fileTypeSurValues = Type.SURVALUES;
 
         // When
         FileParserService contentParserPolicy = contentParserFactory.getParser(fileTypePolicy);

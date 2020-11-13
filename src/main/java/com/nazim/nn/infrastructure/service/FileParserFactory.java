@@ -1,5 +1,6 @@
 package com.nazim.nn.infrastructure.service;
 
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import com.nazim.nn.infrastructure.service.fileparser.impl.OutpayHeaderParser;
 import com.nazim.nn.infrastructure.service.fileparser.impl.PolicyParser;
@@ -17,17 +18,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class FileParserFactory {
 
-    public FileParserService getParser(String type){
+    public FileParserService getParser(Type type){
         if (type == null){
             return null;
         }
-        if (type.equals("POLICY")){
+        if (type.equals(Type.POLICY)){
             return new PolicyParser();
         }
-        if (type.equals("OUTHEADER")){
+        if (type.equals(Type.OUTHEADER)){
             return new OutpayHeaderParser();
         }
-        if (type.equals("SURVALUES")){
+        if (type.equals(Type.SURVALUES)){
             return new SurValuesParser();
         }
         return null;

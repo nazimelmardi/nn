@@ -1,11 +1,9 @@
 package com.nazim.nn.infrastructure.service.fileparser.impl;
 
-import com.nazim.nn.domain.FileDataService;
 import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.adapter.model.OutpayHeaderModel;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -85,7 +83,7 @@ public class OutpayHeaderParser implements FileParserService {
             return (bigDecimalString == null || bigDecimalString.equals("")) ? null : new BigDecimal(bigDecimalString);
         } catch (NumberFormatException e){
             log.warn("Wrong format for decimal value! Skipping to add value...");
-            return null;
+            throw new NumberFormatException(e.getMessage());
         }
     }
 }

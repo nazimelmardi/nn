@@ -1,9 +1,11 @@
 package com.nazim.nn.infrastructure.service;
 
 import com.nazim.nn.domain.FileDataService;
+import com.nazim.nn.domain.value.Type;
 import com.nazim.nn.infrastructure.service.fileparser.FileParserService;
 import com.nazim.nn.infrastructure.service.filestorage.FileStorageUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class InputFileProcessService <T> {
@@ -32,7 +35,7 @@ public class InputFileProcessService <T> {
     public int processFile(MultipartFile file) {
         Resource fileResource = fileStorageUtil.loadFileAsResource(file.getName());
 
-        FileParserService fileParserService = fileParserFactory.getParser(getFileType(file.getName()));
+        FileParserService fileParserService = fileParserFactory.getParser(getFileType(file.getOriginalFilename()));
 
         List<T> listOfModels = fileParserService.parse(asString(fileResource));
 
@@ -51,15 +54,16 @@ public class InputFileProcessService <T> {
         }
     }
 
-    private String getFileType(String fileName) {
+    private Type getFileType(String fileName) {
         if(fileName .contains(CUSTCOMP)){
-            return "POLICY";
+            return Type.POLICY;
         } else if (fileName.contains(OUTPH)){
-            return "OUTHEADER";
+            return Type.OUTHEADER;
         } else if (fileName.contains(ZTPSPF)){
-            return "SURVALUES";
+            return Type.SURVALUES;
         } else {
-            throw new RuntimeException();
+            log.error("Incorrect filename " + fileName );
+            throw new RuntimeException("Incorrect file name");
         }
     }
 }

@@ -59,7 +59,8 @@ public class SurValuesParser implements FileParserService {
         try {
             return (bigDecimalString == null || bigDecimalString.equals("")) ? null : new BigDecimal(bigDecimalString);
         } catch (NumberFormatException e){
-            return null;
+            log.warn("Wrong format for decimal value! Skipping to add value...");
+            throw new NumberFormatException(e.getMessage());
         }
     }
 }
